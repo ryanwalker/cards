@@ -1,8 +1,7 @@
 package funwithcards;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -10,8 +9,6 @@ public class CardDeck {
 
     private List<Card> cardsInDeck;
     private List<Card> dealtCards;
-
-//    private List<Card> newOrder;
 
     public CardDeck() {
         cardsInDeck = new ArrayList<>();
@@ -25,7 +22,7 @@ public class CardDeck {
     }
 
     private CardDeck(boolean b) {
-        //quick deck, for testin
+        //quick deck, for testing
         cardsInDeck = new ArrayList<>();
         cardsInDeck.add(new Card(Suite.clubs, CardType.Five));
         cardsInDeck.add(new Card(Suite.hearts, CardType.Queen));
@@ -80,11 +77,11 @@ public class CardDeck {
     }
 
     /*
-* New Order:  Places the remaining cards in the deck in the order of a new deck of cards (top to bottom:  hearts A-K, clubs A-K, diamonds K-A, spades K-A).
-
- */
-    public List<Card> newOrder() {
-        return null;
+     * New Order:  Places the remaining cards in the deck in the order of a new deck of cards
+     * (top to bottom:  hearts A-K, clubs A-K, diamonds K-A, spades K-A).
+    */
+    public void newOrder() {
+        Collections.sort(cardsInDeck);
     }
 
 
@@ -148,12 +145,12 @@ public class CardDeck {
     public String toString() {
         StringBuilder retVal = new StringBuilder("\nDealt: ").append(dealtCards.size());
         for (Card dealtCard : dealtCards) {
-            retVal.append("\n");
+            retVal.append("\n\t");
             retVal.append(dealtCard);
         }
         retVal.append("\n\nIn deck: ").append(cardsInDeck.size());
         for (Card card : cardsInDeck) {
-            retVal.append("\n");
+            retVal.append("\n\t");
             retVal.append(card);
         }
         return retVal.toString();

@@ -4,7 +4,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class Card {
+public class Card implements Comparable<Card> {
 
     private Suite suite;
     private CardType cardType;
@@ -62,5 +62,17 @@ public class Card {
     @Override
     public String toString() {
         return this.getCardType() + " of " + this.getSuite();
+    }
+
+    @Override
+    public int compareTo(Card card) {
+        if (this.suite == card.suite) {
+            if (this.cardType == card.cardType) {
+                return 0;
+            }
+            return this.cardType.getSortOrder() - card.cardType.getSortOrder();
+        }
+
+        return this.suite.getSortOrder() - card.suite.getSortOrder();
     }
 }

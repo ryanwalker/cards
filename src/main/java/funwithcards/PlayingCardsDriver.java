@@ -14,8 +14,17 @@ public class PlayingCardsDriver {
         cardDeck.deal();
         cardDeck.deal();
         cardDeck.deal();
+        cardDeck.deal();
+        cardDeck.deal();
+        cardDeck.deal();
+        cardDeck.deal();
+        cardDeck.deal();
 
+        cardDeck.newOrder();
         System.out.println(cardDeck.toString());
+
+
+        System.out.println(cardDeck.getDealtCards());
     }
 
 }
