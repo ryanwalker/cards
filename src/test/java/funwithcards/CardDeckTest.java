@@ -30,10 +30,16 @@ public class CardDeckTest {
 
     @Test
     public void cut() throws Exception {
+
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void cutInvalidPoint() {
+    public void cutNegative() {
+        cardDeck.cut(-1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void cutTooHigh() {
         cardDeck.cut(55);
     }
 
@@ -59,8 +65,18 @@ public class CardDeckTest {
 
     @Test
     public void dealNoCardsAvailable() {
-        //Need a test if all cards have been dealt
-        //Loop from 0 to 52, should return null an EmptyCard object last, check for that.
+        CardDeck testDeck = CardDeck.testDeck();
+        testDeck.deal();
+        testDeck.deal();
+        testDeck.deal();
+    }
+
+    @Test
+    public void turnOverNoCardsLeft() {
+        CardDeck testDeck = CardDeck.testDeck();
+        testDeck.deal();
+        testDeck.deal();
+        Assert.assertNull(testDeck.turnOver());
     }
 
     @Test

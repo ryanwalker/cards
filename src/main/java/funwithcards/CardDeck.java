@@ -67,6 +67,16 @@ public class CardDeck {
             throw new IllegalArgumentException("Must cut between 0 and 52");
         }
 
+        if (cutPoint == 0 || cutPoint == cardsInDeck.size()) {
+            // It's already 'cut'
+            return;
+        }
+
+        List<Card> bottom = cardsInDeck.subList(0, cutPoint - 1);
+        List<Card> top = cardsInDeck.subList(cutPoint, cardsInDeck.size() -1);
+        cardsInDeck = new ArrayList<>(top);
+        cardsInDeck.addAll(bottom);
+
     }
 
     /*
@@ -83,10 +93,13 @@ public class CardDeck {
 
      */
     public Card deal() {
-        //Need some boundary checking
-        Card dealtCard = cardsInDeck.remove(0);
-        dealtCards.add(dealtCard);
-        return dealtCard;
+        Card returnCard = null;
+        boolean cardsLeft = cardsInDeck.size() > 0;
+        if (cardsLeft) {
+            returnCard = cardsInDeck.remove(0);
+            dealtCards.add(returnCard);
+        }
+        return returnCard;
     }
 
     /*
@@ -95,7 +108,8 @@ public class CardDeck {
      */
     public Card turnOver() {
         //Need some boundary checking
-        return cardsInDeck.get(0);
+        boolean cardsLeft = cardsInDeck.size() > 0;
+        return cardsLeft ? cardsInDeck.get(0): null;
     }
 
     /*
