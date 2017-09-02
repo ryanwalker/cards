@@ -5,26 +5,28 @@ public class PlayingCardsDriver {
 
 
     public static void main(String[] args) {
-        CardDeck cardDeck = new CardDeck();
-        cardDeck.shuffle();
+        StandardCardDeck standardCardDeck = new StandardCardDeck();
+        standardCardDeck.shuffle();
 
-        System.out.println(cardDeck.toString());
+        System.out.println(standardCardDeck.toString());
 
-        cardDeck.shuffle();
-        cardDeck.deal();
-        cardDeck.deal();
-        cardDeck.deal();
-        cardDeck.deal();
-        cardDeck.deal();
-        cardDeck.deal();
-        cardDeck.deal();
-        cardDeck.deal();
+        standardCardDeck.shuffle();
 
-        cardDeck.newOrder();
-        System.out.println(cardDeck.toString());
+        for (int i = 0; i < 9; i++) {
+            standardCardDeck.deal();
+        }
+
+        standardCardDeck.newOrder();
+        System.out.println(standardCardDeck.toString());
 
 
-        System.out.println(cardDeck.getDealtCards());
+        System.out.println(standardCardDeck.getDealtCards());
+
+
+        CardDeck pinochleCardDeck = new PinochleCardDeck();
+        pinochleCardDeck.newOrder();
+        System.out.println(pinochleCardDeck);
+
     }
 
 }

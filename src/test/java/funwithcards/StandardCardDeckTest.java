@@ -7,21 +7,20 @@ import org.junit.Test;
 import static funwithcards.CardType.*;
 import static funwithcards.Suite.clubs;
 import static funwithcards.Suite.spades;
-import static org.junit.Assert.*;
 
-public class CardDeckTest {
+public class StandardCardDeckTest {
 
-    CardDeck cardDeck;
+    StandardCardDeck standardCardDeck;
 
     @Before
     @Test
     public void setup() {
-        cardDeck = new CardDeck();
+        standardCardDeck = new StandardCardDeck();
     }
 
     @Test
     public void testNewDeckSize() {
-        Assert.assertEquals(cardDeck.cardsInDeck().size(), 52);
+        Assert.assertEquals(standardCardDeck.cardsInDeck().size(), 52);
     }
 
     @Test
@@ -35,37 +34,37 @@ public class CardDeckTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void cutNegative() {
-        cardDeck.cut(-1);
+        standardCardDeck.cut(-1);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void cutTooHigh() {
-        cardDeck.cut(55);
+        standardCardDeck.cut(55);
     }
 
 
 
     @Test
     public void dealHearts() throws Exception {
-        Card card = cardDeck.deal();
+        Card card = standardCardDeck.deal();
         Assert.assertEquals(card.getSuite(), Suite.hearts);
     }
 
     @Test
     public void dealAce() throws Exception {
-        Card card = cardDeck.deal();
+        Card card = standardCardDeck.deal();
         Assert.assertEquals(card.getCardType(), Ace);
     }
 
     @Test
     public void deckSizeAfterDeal() {
-        Card card = cardDeck.deal();
-        Assert.assertEquals(cardDeck.cardsInDeck().size(), 51);
+        Card card = standardCardDeck.deal();
+        Assert.assertEquals(standardCardDeck.cardsInDeck().size(), 51);
     }
 
     @Test
     public void dealNoCardsAvailable() {
-        CardDeck testDeck = CardDeck.testDeck();
+        StandardCardDeck testDeck = StandardCardDeck.testDeck();
         testDeck.deal();
         testDeck.deal();
         testDeck.deal();
@@ -73,7 +72,7 @@ public class CardDeckTest {
 
     @Test
     public void turnOverNoCardsLeft() {
-        CardDeck testDeck = CardDeck.testDeck();
+        StandardCardDeck testDeck = StandardCardDeck.testDeck();
         testDeck.deal();
         testDeck.deal();
         Assert.assertNull(testDeck.turnOver());
@@ -81,32 +80,32 @@ public class CardDeckTest {
 
     @Test
     public void turnOverSuite() throws Exception {
-        Card card = cardDeck.turnOver();
+        Card card = standardCardDeck.turnOver();
         Assert.assertEquals(card.getSuite(), Suite.hearts);
     }
 
     @Test
     public void turnOverCardType() throws Exception {
-        Card card = cardDeck.turnOver();
+        Card card = standardCardDeck.turnOver();
         Assert.assertEquals(card.getCardType(), Ace);
     }
 
     @Test
     public void deckSizeAfterTurnover() {
-        Card card = cardDeck.turnOver();
-        Assert.assertEquals(cardDeck.cardsInDeck().size(), 52);
+        Card card = standardCardDeck.turnOver();
+        Assert.assertEquals(standardCardDeck.cardsInDeck().size(), 52);
     }
 
     @Test
     public void searchNotFound() throws Exception {
-        CardDeck deck = CardDeck.testDeck();
+        StandardCardDeck deck = StandardCardDeck.testDeck();
         int position = deck.search(new Card(spades, Ace));
         Assert.assertEquals(position, -1);
     }
 
     @Test
     public void searchFound() throws Exception {
-        CardDeck deck = CardDeck.testDeck();
+        StandardCardDeck deck = StandardCardDeck.testDeck();
         int position = deck.search(new Card(clubs, Five));
         Assert.assertEquals(position, 1);
     }
