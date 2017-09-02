@@ -99,16 +99,18 @@ public class CardDeck {
     }
 
     /*
-    * Search:  Finds the position of a given card in the deck (top of the deck is the first card, next card is the second, etc.).
+    * Search:  Finds the position of a given card in the deck
+    * (top of the deck is the first card,
+    * next card is the second, etc.).
 
      */
     public int search(Card card) {
         for (int i = 0; i < cardsInDeck.size(); i++) {
             Card candidate = cardsInDeck.get(i);
-            if (card == candidate) {
+            if (card.equals(candidate)) {
                 System.out.println(candidate.getCardType());
                 System.out.println(candidate.getSuite());
-                return i;
+                return i + 1;
             }
         }
         //Returning -1 if not found, not specified instructions
